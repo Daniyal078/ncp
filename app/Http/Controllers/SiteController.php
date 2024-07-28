@@ -29,6 +29,8 @@ class SiteController extends Controller
 
     public function index()
     {
+        return redirect('login');
+
         $pageTitle = 'Home';
 
         $sections = Page::where('name', 'home')->first();

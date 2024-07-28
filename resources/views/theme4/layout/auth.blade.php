@@ -41,7 +41,7 @@
     <link href="{{ asset('asset/theme4/dashboard_assets/assets/scss/style.css') }}" rel="stylesheet" id="style">
 </head>
 
-<body class="d-flex flex-column h-100 sidebar-pushcontent sidebar-filled" data-sidebarstyle="sidebar-pushcontent">
+<body style="background: #9aa1bb !important;" class="d-flex flex-column h-100 sidebar-pushcontent sidebar-filled" data-sidebarstyle="sidebar-pushcontent">
 
     @if (@$general->preloader_status)
         <div id="preloader"></div>
@@ -90,7 +90,7 @@
     <!-- page loader ends -->
 
     <!-- background -->
-    <div class="coverimg w-100 top-0 start-0 position-absolute" id="image-daytime">
+    <div style="background: #9aa1bb !important;" class="coverimg w-100 top-0 start-0 position-absolute" id="image-daytime">
         <div class="overlay"></div>
         <img src="{{ asset('asset/theme4/dashboard_assets/assets/img/bg-1.jpg') }}" alt="" class="w-100" />
     </div>
