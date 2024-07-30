@@ -36,7 +36,6 @@ class UserController extends Controller
     public function dashboard()
     {
 
-
         $pageTitle = "Dashboard";
         $totalInvest = Payment::where('user_id', Auth::id())->where('payment_status', 1)->sum('amount');
         $currentInvest = Payment::where('user_id', Auth::id())
@@ -172,7 +171,17 @@ class UserController extends Controller
 
         // vip work
         $plans = Plan::where('status', 1)->get();
-        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans', 'LvlOneUsers', 'SumLvlOneDepositAmnt', 'LvlTwoUsers', 'SumLvlTwoDepositAmnt', 'LvlThreeUsers', 'SumLvlThreeDepositAmnt', 'TotalTeamDeposit', 'TotalTeamMembers', 'totalTeamCom', 'SumLvlThreeComAmnt', 'SumLvlTwoComAmnt', 'SumLvlOneComAmnt', 'currentDayCommision'));
+        $today_deposit_amount = DB::table('deposits')
+            ->where('user_id', Auth::id())
+            ->where('payment_status', 1)
+            ->whereDate('created_at', Carbon::today())
+            ->sum('amount');
+        $today_withdraw_amount = DB::table('withdraws')
+            ->where('user_id', Auth::id())
+            ->where('status', 1)
+            ->whereDate('created_at', Carbon::today())
+            ->sum('withdraw_amount');
+        return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans', 'LvlOneUsers', 'SumLvlOneDepositAmnt', 'LvlTwoUsers', 'SumLvlTwoDepositAmnt', 'LvlThreeUsers', 'SumLvlThreeDepositAmnt', 'TotalTeamDeposit', 'TotalTeamMembers', 'totalTeamCom', 'SumLvlThreeComAmnt', 'SumLvlTwoComAmnt', 'SumLvlOneComAmnt', 'currentDayCommision','today_deposit_amount','today_withdraw_amount'));
     }
 
     public function profile()

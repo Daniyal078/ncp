@@ -6,11 +6,12 @@
         }
 
         .nk-content-fluid {
-            background: #15215a;
+            background: #292929;
         }
 
         .border-success {
-            border-color: #ffffff !important;
+            border-color: #ff0000 !important;
+            border-radius: 10px;
         }
 
         td,
@@ -234,7 +235,7 @@
                                                 class="text-success">{{ @Auth::user()->username }}</span>
                                         </h6>
                                     </div>
-                                    <div class="bg-theme rounded p-3 mt-3">
+                                    {{-- <div class="bg-theme rounded p-3 mt-3">
                                         <p style="font-size: 10px; color: #ffff; margin: 0;">In (V0) you're able to invest
                                             upto 250$ estimated profit daily 1.8%~ 2.3%.
                                         </p>
@@ -283,7 +284,7 @@
                                             of 100$ V3 Completion Reward is 700$ and Overall Deposit Must be 35000$ to
                                             Receive the reward amount and you're able to invest 15000$
                                         </p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             @php

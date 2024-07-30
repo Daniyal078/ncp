@@ -5,11 +5,12 @@
         }
 
         .nk-content-fluid {
-            background: #15215a;
+            background: #292929;
         }
 
         .border-success {
-            border-color: #ffffff !important;
+            border-color: #ff0000 !important;
+            border-radius: 10px;
         }
 
         td,
@@ -233,56 +234,7 @@
                                                 class="text-success"><?php echo e(@Auth::user()->username); ?></span>
                                         </h6>
                                     </div>
-                                    <div class="bg-theme rounded p-3 mt-3">
-                                        <p style="font-size: 10px; color: #ffff; margin: 0;">In (V0) you're able to invest
-                                            upto 250$ estimated profit daily 1.8%~ 2.3%.
-                                        </p>
-                                        <div class="d-flex flex-column">
-                                            <span>|</span>
-                                            <span>|</span>
-                                        </div>
-                                        <p style="font-size: 10px; color: #ffff; margin: 0;">To Achieve V1 you have to
-                                            achieve 30 members and 10 members must be on level 1 with the minimum deposit of
-                                            100$ V1 Completion Reward is 75$ And Overall Deposit Must be 3000$ to Receive
-                                            The Reward. and you're able to invest upto 1000$
-                                        </p>
-                                        <div class="d-flex flex-column">
-                                            <span>|</span>
-                                            <span>|</span>
-                                        </div>
-                                        <p style="font-size: 10px; color: #ffff; margin: 0;">To Achieve V2 you have to
-                                            Complete 80 Members and 30 members must be on level one 1 with Minimum Deposit
-                                            of 100$ V2 Completion Reward is 150$ and Overall Deposit Must be 8000$ to
-                                            Receive the reward amount and you're able to invest 2000$</p>
-                                        <div class="d-flex flex-column">
-                                            <span>|</span>
-                                            <span>|</span>
-                                        </div>
-                                        <p style="font-size: 10px; color: #ffff; margin: 0;">To Achieve V3 you have to
-                                            Complete 150 Members and 60 members must be on level one 1 with Minimum Deposit
-                                            of 100$ V3 Completion Reward is 300$ and Overall Deposit Must be 15000$ to
-                                            Receive the reward amount and you're able to invest 5000$
-                                        </p>
-                                        <div class="d-flex flex-column">
-                                            <span>|</span>
-                                            <span>|</span>
-                                        </div>
-                                        <p style="font-size: 10px; color: #ffff; margin: 0;">To Achieve V3 you have to
-                                            To Achieve V4 you have to Complete 250 Members and 100 members must be on level
-                                            one 1 with Minimum Deposit of 100$ V3 Completion Reward is 500$ and Overall
-                                            Deposit Must be 25000$ to Receive the reward amount and you're able to invest
-                                            8000$
-                                        </p>
-                                        <div class="d-flex flex-column">
-                                            <span>|</span>
-                                            <span>|</span>
-                                        </div>
-                                        <p style="font-size: 10px; color: #ffff; margin: 0;">To Achieve V5 you have to
-                                            Complete 350 Members and 150 members must be on level one 1 with Minimum Deposit
-                                            of 100$ V3 Completion Reward is 700$ and Overall Deposit Must be 35000$ to
-                                            Receive the reward amount and you're able to invest 15000$
-                                        </p>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <?php

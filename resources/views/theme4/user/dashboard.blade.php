@@ -3,7 +3,7 @@
 @section('content2')
     <div class="container-fluid">
         <div class="row align-items-center page-title">
-           
+
         </div>
     </div>
 
@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="col">
                                             <p class="text-secondary small mb-1">Today Depost</p>
-                                            <h4 class="text-dark mb-0"><span class="increamentcount">8788</span> <small
+                                            <h4 class="text-dark mb-0"><span class="increamentcount">{{$today_deposit_amount}}</span> <small
                                                     class="h6">{{$general->site_currency}}</small></h4>
                                         </div>
                                     </div>
@@ -82,17 +82,15 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <p class="text-secondary small mb-1">Wallet Income</p>
-                                            <h4 class="text-dark mb-0"><span class="increamentcount">52000</span> <small
-                                                    class="h6">USD</small></h4>
-                                            <p class="small">36.00 <span class="text-green"><i
-                                                        class="bi bi-arrow-up fs-10"></i>3.15%</span></p>
+                                            <p class="text-secondary small mb-1">Today Withdraw</p>
+                                            <h4 class="text-dark mb-0"><span class="increamentcount">{{$today_withdraw_amount}}</span> <small
+                                                    class="h6">{{$general->site_currency}}</small></h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide p-1 w-auto">
+                        {{-- <div class="swiper-slide p-1 w-auto">
                             <div class="card border-0 ">
                                 <div class="card-body">
                                     <div class="row align-items-center">
@@ -111,7 +109,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
@@ -150,6 +148,71 @@
                 </div>
             </div>
         </div>
+
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
+                <a href="{{ url('investmentplan') }}">
+                <div class="card border-0 mb-4 theme-red bg-radial-gradient text-white">
+                    <div class="card-body bg-none">
+                        <div class="row gx-2 align-items-center">
+                            <div class="col-auto">
+
+                            </div>
+                            <div class="col">
+                                <p class="small mb-1">{{ __('Investment Plans') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
+                <a href="{{ url('commision') }}">
+                <div class="card border-0 mb-4 theme-yellow bg-radial-gradient text-white">
+                    <div class="card-body bg-none">
+                        <div class="row gx-2 align-items-center">
+                            <div class="col-auto">
+
+                            </div>
+                            <div class="col">
+                                <p class="small mb-1">{{ __('Refferal Log') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
+                <a href="{{ url('team') }}">
+                <div class="card border-0 mb-4 theme-purple bg-radial-gradient text-white">
+                    <div class="card-body bg-none">
+                        <div class="row gx-2 align-items-center">
+                            <div class="col-auto">
+
+                            </div>
+                            <div class="col">
+                                <p class="small mb-1">{{ __('My Team') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
+                <a href="{{ url('interest/log') }}">
+                <div class="card border-0 mb-4 theme-orange bg-radial-gradient text-white">
+                    <div class="card-body bg-none">
+                        <div class="row gx-2 align-items-center">
+                            <div class="col-auto">
+
+                            </div>
+                            <div class="col">
+                                <p class="small mb-1">{{ __('Interest Log') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            </div>
         <div class="mt-4">
             <label>{{ __('Your refferal link') }}</label>
             <div class="input-group mb-3">
