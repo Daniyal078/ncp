@@ -227,7 +227,7 @@
                         placeholder="transaction id">
                     <input type="date" class="form-control form-control-sm me-3"
                         placeholder="Search User" name="date">
-                    <button type="submit" class="btn main-btn btn-sm"><?php echo e(__('Search')); ?></button>
+                    <button type="submit" class="btn btn-theme btn-sm"><?php echo e(__('Search')); ?></button>
                 </form>
             </div>
         </div>

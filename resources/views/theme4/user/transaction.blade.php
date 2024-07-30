@@ -219,7 +219,7 @@
         text-decoration: underline;
     }
     .heading{
-        margin-top: 1350px;
+        /* margin-top: 1350px; */
     }
 </style>
 @section('content2')

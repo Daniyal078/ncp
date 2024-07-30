@@ -181,18 +181,6 @@
     <div class="sidebar-wrap">
         <div class="sidebar">
             <div class="container">
-                <div class="row mb-4">
-                    <div class="col align-self-center">
-                        <h6>Main navigation</h6>
-                    </div>
-                    <div class="col-auto">
-                        <a class="" data-bs-toggle="collapse" data-bs-target="#usersidebarprofile"
-                            aria-expanded="false" role="button" aria-controls="usersidebarprofile">
-                            <i class="bi bi-person-circle"></i>
-                        </a>
-                    </div>
-                </div>
-
                 <!-- user information -->
                 <div class="row text-center collapse " id="usersidebarprofile">
                     <div class="col-12">

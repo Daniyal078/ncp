@@ -224,7 +224,7 @@
             text-decoration: underline;
         }
         .heading{
-            margin-top: 290px;
+            margin-top: 20px;
         }
         .top-btn{
             color:#15215a!important;

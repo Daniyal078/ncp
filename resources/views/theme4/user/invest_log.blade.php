@@ -218,9 +218,9 @@
         color: #39f;
         text-decoration: underline;
     }
-    .heading{
+    /* .heading{
         margin-top: 230px;
-    }
+    } */
 </style>
 <script>
     'use strict'

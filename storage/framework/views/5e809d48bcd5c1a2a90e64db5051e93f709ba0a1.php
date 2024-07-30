@@ -217,7 +217,7 @@
         text-decoration: underline;
     }
     .heading{
-        margin-top: 1350px;
+        /* margin-top: 1350px; */
     }
 </style>
 <?php $__env->startSection('content2'); ?>

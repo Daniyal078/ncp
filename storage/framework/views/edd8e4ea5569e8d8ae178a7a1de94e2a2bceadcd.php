@@ -216,9 +216,9 @@
         color: #39f;
         text-decoration: underline;
     }
-    .heading{
+    /* .heading{
         margin-top: 200px!important;
-    }
+    } */
 </style>
 
 <?php $__env->startSection('content2'); ?>
