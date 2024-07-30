@@ -32,6 +32,10 @@
 
     <!-- balance bar -->
     <div class="container text-center mb-3 py-3">
+        <?php if($uplainer_name): ?>
+        <h5 class="text-start text-theme">Uplainer Name</h5>
+        <p class="text-start mb-3"><?php echo e($uplainer_name->fname); ?> <?php echo e($uplainer_name->lname); ?></p>
+        <?php endif; ?>
         <!-- Balance -->
         <h2 class="fw-medium"> <?php echo e(number_format(auth()->user()->balance, 2)); ?> <small><?php echo e($general->site_currency); ?></small></h2>
         <p class="text-secondary mb-4">Current Balance</p>

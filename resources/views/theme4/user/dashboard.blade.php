@@ -34,6 +34,10 @@
 
     <!-- balance bar -->
     <div class="container text-center mb-3 py-3">
+        @if ($uplainer_name)
+        <h5 class="text-start text-theme">Uplainer Name</h5>
+        <p class="text-start mb-3">{{ $uplainer_name->fname }} {{ $uplainer_name->lname }}</p>
+        @endif
         <!-- Balance -->
         <h2 class="fw-medium"> {{ number_format(auth()->user()->balance, 2) }} <small>{{ $general->site_currency }}</small></h2>
         <p class="text-secondary mb-4">Current Balance</p>

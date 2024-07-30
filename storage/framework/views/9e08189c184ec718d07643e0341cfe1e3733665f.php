@@ -298,7 +298,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="<?php echo e(url('interest/log')); ?>">
                                     <div class="avatar avatar-40 icon"><i class="bi bi-house-door"></i></div>
-                                    <div class="col">Interest log</div>
+                                    <div class="col">Profit log</div>
                                     <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                 </a>
                             </li>
