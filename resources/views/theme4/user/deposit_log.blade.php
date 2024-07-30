@@ -14,7 +14,7 @@
         padding: 2mm;
         margin: 0 auto;
         width: 100%;
-        background: #000;
+        background: #f26f99;
         border-radius: 10px;
     }
 

@@ -151,7 +151,7 @@
                     <div class="card-header">
                         <div class="row align-items-center ">
                             <div class="col">
-                                <img src="{{ getFile('gateways', $gateway->gateway_image) }}" alt="Lights" class="trans-img">
+                                <img src="{{ getFile('gateways', $gateway->gateway_image) }}" alt="Lights" class="trans-img img-fluid">
                                 <p class="fw-medium fw-0">{{ ucwords(str_replace('_', ' ', $gateway->gateway_name)) }}</p>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
                             fade
                             bg-transparent mt-5"
                                     tabindex="-1" role="dialog" id="paynow">
-                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-dialog" role="document" style="box-shadow: 6px 7px 13px 0px rgba(0,0,0,0.75)!important;">
                                         <form style="width: 100%;" action="" method="post">
                                             @csrf
                                             <div class="modal-content p-3">
@@ -187,7 +187,6 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body p-0">
-                                                    <div class="row">
                                                         <input type="hidden" name="id" value="">
                                                         <div class="form-group p-0">
                                                             <label for="">{{ __('Amount') }}</label>
@@ -200,9 +199,8 @@
                                                             <input type="hidden" name="type" class="form-control"
                                                                 value="deposit">
                                                         </div>
-                                                    </div>
                                                     <button type="submit"
-                                                        class="btn btn-theme mt-2"><span>{{ __('Deposit Now') }}</span></button>
+                                                        class="btn btn-theme mt-2 w-100"><span>{{ __('Deposit Now') }}</span></button>
                                                 </div>
                                             </div>
                                         </form>

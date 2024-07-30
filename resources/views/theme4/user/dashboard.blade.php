@@ -3,16 +3,10 @@
 @section('content2')
     <div class="container-fluid">
         <div class="row align-items-center page-title">
-            <div class="col col-sm-auto">
-                <div class="input-group input-group-md">
-                    <input type="text" class="form-control bg-none px-0" value="" id="citymy" />
-                    <span class="input-group-text text-secondary bg-none" ><i
-                            class="bi bi-calendar-event"></i></span>
-                </div>
-            </div>
+           
         </div>
     </div>
-    
+
 <script>
     function getLocation() {
         if (navigator.geolocation) {

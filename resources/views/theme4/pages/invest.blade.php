@@ -114,8 +114,8 @@
 <div class="modal mt-5
                                                                                                                             fade
                                                                                                                             bg-transparent"
-    id="invest" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+id="invest" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="box-shadow: 6px 7px 13px 0px rgba(0,0,0,0.75)!important;">
         <form class="invest-form" style="width: 100%;" action="{{ route('user.investmentplan.submit') }}"
             method="post">
             @csrf

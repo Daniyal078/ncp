@@ -60,7 +60,7 @@
                             fade
                             bg-transparent mt-5"
                                     tabindex="-1" role="dialog" id="paynow">
-                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-dialog" role="document" style="box-shadow: 6px 7px 13px 0px rgba(0,0,0,0.75)!important;">
                                         <form style="width: 100%;" action="" method="post">
                                             <?php echo csrf_field(); ?>
                                             <div class="modal-content p-3">
@@ -72,7 +72,6 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body p-0">
-                                                    <div class="row">
                                                         <input type="hidden" name="id" value="">
                                                         <div class="form-group p-0">
                                                             <label for=""><?php echo e(__('Amount')); ?></label>
@@ -85,9 +84,8 @@
                                                             <input type="hidden" name="type" class="form-control"
                                                                 value="deposit">
                                                         </div>
-                                                    </div>
                                                     <button type="submit"
-                                                        class="btn btn-theme mt-2"><span><?php echo e(__('Deposit Now')); ?></span></button>
+                                                        class="btn btn-theme mt-2 w-100"><span><?php echo e(__('Deposit Now')); ?></span></button>
                                                 </div>
                                             </div>
                                         </form>
