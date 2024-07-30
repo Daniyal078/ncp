@@ -160,7 +160,7 @@
                         <div class="row">
                             <div class="col-auto">
                                 <button data-href="{{ route('user.paynow', $gateway->id) }}"
-                                    data-id="{{ $gateway->id }}" class="btn btn-theme btn-md paynow">Pay Now</button>
+                                    data-id="{{ $gateway->id }}" class="btn btn-theme btn-md paynow">Deposit Now</button>
                             </div>
                         </div>
                     </div>
