@@ -316,13 +316,7 @@
                                     <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="<?php echo e(url('ticket')); ?>">
-                                    <div class="avatar avatar-40 icon"><i class="bi bi-house-door"></i></div>
-                                    <div class="col">Support</div>
-                                    <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                                </a>
-                            </li>
+                            
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="<?php echo e(url('logout')); ?>">
                                     <div class="avatar avatar-40 icon"><i class="bi bi-house-door"></i></div>

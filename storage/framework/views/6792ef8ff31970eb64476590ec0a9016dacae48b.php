@@ -108,7 +108,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('script'); ?>
-<div class="modal
+<div class="modal mt-5
                                                                                                                             fade
                                                                                                                             bg-transparent"
     id="invest" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

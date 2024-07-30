@@ -1,7 +1,6 @@
 <style>
     input{
         border: 1px solid #15215a!important;
-        margin: 5px 10px 5px 10px!important;
     }
 </style>
 <?php $__env->startSection('content2'); ?>
