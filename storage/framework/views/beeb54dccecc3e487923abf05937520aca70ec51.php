@@ -35,7 +35,7 @@
                     <div class="card-header">
                         <div class="row align-items-center ">
                             <div class="col">
-                                <img src="<?php echo e(getFile('gateways', $gateway->gateway_image)); ?>" alt="Lights" class="trans-img">
+                                <img src="<?php echo e(getFile('gateways', $gateway->gateway_image)); ?>" alt="Lights" class="trans-img img-fluid">
                                 <p class="fw-medium fw-0"><?php echo e(ucwords(str_replace('_', ' ', $gateway->gateway_name))); ?></p>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col-auto">
                                 <button data-href="<?php echo e(route('user.paynow', $gateway->id)); ?>"
-                                    data-id="<?php echo e($gateway->id); ?>" class="btn btn-theme btn-md paynow">Pay Now</button>
+                                    data-id="<?php echo e($gateway->id); ?>" class="btn btn-theme btn-md paynow">Deposit Now</button>
                             </div>
                         </div>
                     </div>

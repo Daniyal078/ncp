@@ -181,14 +181,44 @@ class UserController extends Controller
             ->where('status', 1)
             ->whereDate('created_at', Carbon::today())
             ->sum('withdraw_amount');
-            $uplainer_id = DB::table('users')->where('id', auth()->id())->value('reffered_by');
-            $uplainer_name = DB::table('users')->where('id', $uplainer_id)->first(['fname', 'lname']);
+        $uplainer_id = DB::table('users')->where('id', auth()->id())->value('reffered_by');
+        $uplainer_name = DB::table('users')->where('id', $uplainer_id)->first(['fname', 'lname']);
 
 
-            // deposit reward work
-            if($TotalTeamDeposit >= 100000){
-                // plus users balance reward amount 500
-            }
+        // deposit reward work
+       // Ensure $SumLvlOneDepositAmnt and $lastCheckedDeposit are numeric
+// Access the total_amount property correctly
+$SumLvlOneDepositAmnt = $SumLvlOneDepositAmnt->total_amount ?? 0;
+$lastCheckedDeposit = $user->last_checked_deposit ?? 0; // Default to 0 if null
+
+// deposit reward work
+if (is_numeric($SumLvlOneDepositAmnt) && is_numeric($lastCheckedDeposit)) {
+    $increments = floor(($SumLvlOneDepositAmnt - $lastCheckedDeposit) / 100000);
+
+    if ($increments > 0) {
+        $user->balance += $increments * 3000; // Add 3000 Rs for each increment of 100,000
+        $user->last_checked_deposit = $SumLvlOneDepositAmnt; // Update the last checked deposit
+        $user->save();
+
+        // Create a transaction record for the reward
+        Transaction::create([
+            'trx' => strtoupper(Str::random(16)),
+            'gateway_id' => 0,
+            'amount' => $increments * 3000, // The reward amount
+            'currency' => @$general->site_currency,
+            'charge' => 0,
+            'details' => 'Deposit Commission From Level 1',
+            'type' => '+',
+            'gateway_transaction' => '',
+            'payment_status' => 1,
+            'user_id' => auth()->id(),
+        ]);
+    }
+}
+
+
+        // deposit reward work
+
         return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans', 'LvlOneUsers', 'SumLvlOneDepositAmnt', 'LvlTwoUsers', 'SumLvlTwoDepositAmnt', 'LvlThreeUsers', 'SumLvlThreeDepositAmnt', 'TotalTeamDeposit', 'TotalTeamMembers', 'totalTeamCom', 'SumLvlThreeComAmnt', 'SumLvlTwoComAmnt', 'SumLvlOneComAmnt', 'currentDayCommision', 'today_deposit_amount', 'today_withdraw_amount', 'uplainer_name'));
     }
 

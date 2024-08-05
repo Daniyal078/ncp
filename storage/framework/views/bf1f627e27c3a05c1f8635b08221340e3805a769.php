@@ -30,23 +30,14 @@
                     </div>
                     <div class="col-auto text-end">
                         <p class="display-3 mb-0">
-                            <img src="<?php echo e(asset('asset/theme4/dashboard_assets/assets/img/cloud-sun.png')); ?>" alt=""
-                                class="vm me-0 tempimage" id="tempimage" />
                             <span id="temperature">46</span><span class="h4 text-uppercase"> <sup>0</sup>C</span>
                         </p>
-
+    
                         <a href="javascript:void()" class="btn btn-link text-white dd-arrow-none dropdown-toggle p-0"
                             id="selectCity" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="h5 fw-normal" id="city">New York</span> <i
+                            <span class="h5 fw-normal" id="citymy">New York</span> <i
                                 class="bi bi-pencil-square small fw-light"></i>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="selectCity" id="citychange">
-                            <li class="dropdown-item" data-value="New York">New York</li>
-                            <li class="dropdown-item active" data-value="London">London</li>
-                            <li class="dropdown-item" data-value="Qatar">Qatar</li>
-                            <li class="dropdown-item" data-value="Delhi">Delhi</li>
-                            <li class="dropdown-item" data-value="Sydney">Sydney</li>
-                        </ul>
                     </div>
                 </div>
                 <!-- time and temperature ends -->

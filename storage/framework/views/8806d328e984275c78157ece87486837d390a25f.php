@@ -16,7 +16,7 @@
                                 <thead>
                                     <tr>
                                         <th><?php echo e(__('Sl')); ?></th>
-                                        
+                                        <th><?php echo e(__('User')); ?></th>
                                         <th><?php echo e(__('Amount')); ?></th>
                                         <th><?php echo e(__('Charge')); ?></th>
                                         <th><?php echo e(__('status')); ?></th>
@@ -27,7 +27,7 @@
                                     <?php $__empty_1 = true; $__currentLoopData = $manuals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $manual): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                         <tr>
                                             <td><?php echo e($loop->iteration); ?></td>
-                                            
+                                            <td><?php echo e($manual->user->fullname); ?></td>
                                             <td><?php echo e(number_format($manual->amount, 2) . ' ' . @$general->site_currency); ?>
 
                                             </td>
