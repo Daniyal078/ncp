@@ -12,7 +12,7 @@ use App\Models\UserInterest;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
 use Auth;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 
 class ManageUserController extends Controller
@@ -93,7 +93,89 @@ class ManageUserController extends Controller
 
         $pageTitle = "User Details";
 
-        return view('backend.users.details', compact('pageTitle', 'user', 'plan', 'totalRef', 'userInterest', 'userCommission', 'withdrawTotal', 'totalDeposit', 'totalInvest', 'totalTicket','months','totalAmount','withdrawMonths','withdrawTotalAmount'));
+                // perfomane chart work
+                $LvlOneUsers = Db::table('users')
+                ->select('id')
+                ->where('reffered_by', $user->id)
+                ->where('status', 1) // Add this line
+                ->pluck('id')
+                ->toArray();
+
+                $LvlOneUsersInactive = Db::table('users')
+                ->select('id')
+                ->where('reffered_by', $user->id)
+                ->where('status', 0) // Add this line
+                ->pluck('id')
+                ->toArray();
+
+
+            $SumLvlOneDepositAmnt = DB::table('deposits')
+                ->selectRaw('SUM(amount) AS total_amount')
+                ->whereIn('user_id', $LvlOneUsers)
+                ->where('payment_status', 1)
+                ->first();
+
+            $LvlTwoUsers = DB::table('users')
+                ->select('id')
+                ->whereIn('reffered_by', $LvlOneUsers)
+                ->where('status', 1)
+                ->pluck('id')
+                ->toArray();
+
+            $LvlTwoUsersInactive = DB::table('users')
+                ->select('id')
+                ->whereIn('reffered_by', $LvlOneUsers)
+                ->where('status', 0)
+                ->pluck('id')
+                ->toArray();
+
+            $SumLvlTwoDepositAmnt = DB::table('deposits')
+                ->selectRaw('SUM(amount) AS total_amount')
+                ->whereIn('user_id', $LvlTwoUsers)
+                ->where('payment_status', 1)
+                ->first();
+
+            $LvlThreeUsers = DB::table('users')
+                ->select('id')
+                ->whereIn('reffered_by', $LvlTwoUsers)
+                ->where('status', 1)
+                ->pluck('id')
+                ->toArray();
+
+            $LvlThreeUsersInactive = DB::table('users')
+                ->select('id')
+                ->whereIn('reffered_by', $LvlTwoUsers)
+                ->where('status', 0)
+                ->pluck('id')
+                ->toArray();
+
+            $SumLvlThreeDepositAmnt = DB::table('deposits')
+                ->selectRaw('SUM(amount) AS total_amount')
+                ->whereIn('user_id', $LvlThreeUsers)
+                ->where('payment_status', 1)
+                ->first();
+
+
+            $SumLvlOneComAmnt = DB::table('reffered_commissions')
+                ->selectRaw('SUM(amount) AS total_com')
+                ->whereIn('reffered_to', $LvlOneUsers)
+                ->first();
+            $SumLvlTwoComAmnt = DB::table('reffered_commissions')
+                ->selectRaw('SUM(amount) AS total_com')
+                ->whereIn('reffered_to', $LvlTwoUsers)
+                ->first();
+            $SumLvlThreeComAmnt = DB::table('reffered_commissions')
+                ->selectRaw('SUM(amount) AS total_com')
+                ->whereIn('reffered_to', $LvlThreeUsers)
+                ->first();
+
+            $TotalTeamDeposit = $SumLvlOneDepositAmnt->total_amount + $SumLvlTwoDepositAmnt->total_amount + $SumLvlThreeDepositAmnt->total_amount;
+            $TotalTeamMembers = count($LvlOneUsers) + count($LvlTwoUsers) + count($LvlThreeUsers);
+            $TotalTeamMembersInactive = count($LvlOneUsersInactive) + count($LvlTwoUsersInactive) + count($LvlThreeUsersInactive);
+            $totalTeamCom = $SumLvlOneComAmnt->total_com + $SumLvlTwoComAmnt->total_com + $SumLvlThreeComAmnt->total_com;
+            // perfomane chart work
+
+        return view('backend.users.details', compact('pageTitle', 'user', 'plan', 'totalRef', 'userInterest', 'userCommission', 'withdrawTotal', 'totalDeposit', 'totalInvest', 'totalTicket','months','totalAmount','withdrawMonths','withdrawTotalAmount','TotalTeamDeposit','TotalTeamMembers','TotalTeamMembersInactive','totalTeamCom'));
     }
 
     public function userUpdate(Request $request, User $user)

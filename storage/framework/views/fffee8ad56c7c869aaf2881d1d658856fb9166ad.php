@@ -1,12 +1,10 @@
-@extends('backend.layout.master')
-
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="main-content">
         <div class="text-right mb-4">
             <a href="#" class="btn btn-sm btn-outline-primary sendMail">
                 <i class="fas fa-envelope mr-1"></i>
-                {{ 'Send Email' }}
+                <?php echo e('Send Email'); ?>
+
             </a>
         </div>
 
@@ -14,54 +12,54 @@
             <div class="col-xl-3">
                 <div class="sp_user_sidebar h-100">
                     <div class="sp_user_img">
-                        <img src="{{ getFile('user', $user->image, true) }}" alt="image">
+                        <img src="<?php echo e(getFile('user', $user->image, true)); ?>" alt="image">
                     </div>
                     <div class="text-center mt-4">
-                        <h5 class="mb-0">{{ $user->full_name }}</h5>
-                        <p>{{ $user->email }}</p>
+                        <h5 class="mb-0"><?php echo e($user->full_name); ?></h5>
+                        <p><?php echo e($user->email); ?></p>
                     </div>
 
                     <ul class="user-action-list">
                         <li>
-                            <a href="{{ route('admin.login.user', $user->id) }}" target="_blank"
+                            <a href="<?php echo e(route('admin.login.user', $user->id)); ?>" target="_blank"
                                 class="btn btn-sm btn-outline-primary"><i class="fas fa-link mr-1"></i>
-                                {{ 'Login As User' }}</a>
+                                <?php echo e('Login As User'); ?></a>
                         </li>
 
                         <li>
-                            <a href="{{ route('admin.commision', $user) }}" class="btn btn-sm btn-outline-primary"><i
-                                    class="fas fa-link mr-1"></i> {{ 'Commission Log' }}</a>
+                            <a href="<?php echo e(route('admin.commision', $user)); ?>" class="btn btn-sm btn-outline-primary"><i
+                                    class="fas fa-link mr-1"></i> <?php echo e('Commission Log'); ?></a>
                         </li>
 
                         <li>
-                            <a href="{{ route('admin.user.interestlog', $user) }}" class="btn btn-sm btn-outline-primary"><i
-                                    class="fas fa-link mr-1"></i> {{ 'Interest Log' }}</a>
+                            <a href="<?php echo e(route('admin.user.interestlog', $user)); ?>" class="btn btn-sm btn-outline-primary"><i
+                                    class="fas fa-link mr-1"></i> <?php echo e('Interest Log'); ?></a>
                         </li>
 
                         <li>
-                            <a href="{{ route('admin.deposit.log', $user) }}" class="btn btn-sm btn-outline-primary"><i
-                                    class="fas fa-link mr-1"></i> {{ 'Deposit Log' }}</a>
+                            <a href="<?php echo e(route('admin.deposit.log', $user)); ?>" class="btn btn-sm btn-outline-primary"><i
+                                    class="fas fa-link mr-1"></i> <?php echo e('Deposit Log'); ?></a>
                         </li>
 
                         <li>
-                            <a href="{{ route('admin.payment.report', $user) }}" class="btn btn-sm btn-outline-primary"><i
-                                    class="fas fa-link mr-1"></i> {{ 'Investment Log' }}</a>
+                            <a href="<?php echo e(route('admin.payment.report', $user)); ?>" class="btn btn-sm btn-outline-primary"><i
+                                    class="fas fa-link mr-1"></i> <?php echo e('Investment Log'); ?></a>
                         </li>
 
                         <li>
-                            <a href="{{ route('admin.withdraw.report', $user) }}" class="btn btn-sm btn-outline-primary"><i
-                                    class="fas fa-link mr-1"></i> {{ 'Withdraw Log' }}</a>
+                            <a href="<?php echo e(route('admin.withdraw.report', $user)); ?>" class="btn btn-sm btn-outline-primary"><i
+                                    class="fas fa-link mr-1"></i> <?php echo e('Withdraw Log'); ?></a>
                         </li>
 
                         <li>
-                            <a href="{{ route('admin.ticket.index', ['user' => $user->id]) }}"
+                            <a href="<?php echo e(route('admin.ticket.index', ['user' => $user->id])); ?>"
                                 class="btn btn-sm btn-outline-primary"><i class="fas fa-link mr-1"></i>
-                                {{ 'User Ticket' }}</a>
+                                <?php echo e('User Ticket'); ?></a>
                         </li>
 
                         <li>
-                            <a href="{{ route('admin.transaction', $user) }}" class="btn btn-sm btn-outline-primary"><i
-                                    class="fas fa-link mr-1"></i> {{ 'User Transactions' }}</a>
+                            <a href="<?php echo e(route('admin.transaction', $user)); ?>" class="btn btn-sm btn-outline-primary"><i
+                                    class="fas fa-link mr-1"></i> <?php echo e('User Transactions'); ?></a>
                         </li>
                     </ul>
                 </div>
@@ -72,12 +70,12 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="overview-tab" data-toggle="tab" data-target="#overview"
                                 type="button" role="tab" aria-controls="overview"
-                                aria-selected="true">{{__('Overview')}}</button>
+                                aria-selected="true"><?php echo e(__('Overview')); ?></button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="settings-tab" data-toggle="tab" data-target="#settings"
                                 type="button" role="tab" aria-controls="settings"
-                                aria-selected="false">{{__('Settings')}}</button>
+                                aria-selected="false"><?php echo e(__('Settings')); ?></button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="balance-tab" data-toggle="tab" data-target="#balance"
@@ -86,12 +84,12 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="referral-tab" data-toggle="tab" data-target="#referral"
                                 type="button" role="tab" aria-controls="referral"
-                                aria-selected="false">{{__('referral')}}</button>
+                                aria-selected="false"><?php echo e(__('referral')); ?></button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="perfomance-tab" data-toggle="tab" data-target="#perfomance"
                                 type="button" role="tab" aria-controls="referral"
-                                aria-selected="false">{{__('Perfomance Chart')}}</button>
+                                aria-selected="false"><?php echo e(__('Perfomance Chart')); ?></button>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -105,10 +103,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Balance') }}</h4>
+                                                <h4><?php echo e(__('Total Balance')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ number_format($user->balance, 2) . ' ' . @$general->site_currency }}
+                                                <?php echo e(number_format($user->balance, 2) . ' ' . @$general->site_currency); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -121,10 +120,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Refferal') }}</h4>
+                                                <h4><?php echo e(__('Total Refferal')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ $totalRef }}
+                                                <?php echo e($totalRef); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -137,10 +137,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Return Interest') }}</h4>
+                                                <h4><?php echo e(__('Total Return Interest')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ number_format($userInterest, 2) . ' ' . $general->site_currency }}
+                                                <?php echo e(number_format($userInterest, 2) . ' ' . $general->site_currency); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -153,10 +154,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Commission') }}</h4>
+                                                <h4><?php echo e(__('Total Commission')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ number_format($userCommission, 2) . ' ' . $general->site_currency }}
+                                                <?php echo e(number_format($userCommission, 2) . ' ' . $general->site_currency); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -169,10 +171,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Withdraw') }}</h4>
+                                                <h4><?php echo e(__('Total Withdraw')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ number_format($withdrawTotal, 2) . ' ' . $general->site_currency }}
+                                                <?php echo e(number_format($withdrawTotal, 2) . ' ' . $general->site_currency); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -185,10 +188,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Deposit') }}</h4>
+                                                <h4><?php echo e(__('Total Deposit')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ number_format($totalDeposit, 2) . ' ' . $general->site_currency }}
+                                                <?php echo e(number_format($totalDeposit, 2) . ' ' . $general->site_currency); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -201,10 +205,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Invest amount') }}</h4>
+                                                <h4><?php echo e(__('Total Invest amount')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ number_format($totalInvest, 2) . ' ' . $general->site_currency }}
+                                                <?php echo e(number_format($totalInvest, 2) . ' ' . $general->site_currency); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -217,10 +222,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Ticket') }}</h4>
+                                                <h4><?php echo e(__('Total Ticket')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ $totalTicket }}
+                                                <?php echo e($totalTicket); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -238,89 +244,89 @@
                         </div>
 
                         <div class="tab-pane fade pt-3" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                            <form action="{{ route('admin.user.update', $user->id) }}" method="post">
-                                @csrf
+                            <form action="<?php echo e(route('admin.user.update', $user->id)); ?>" method="post">
+                                <?php echo csrf_field(); ?>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label>{{ __('First Name') }}</label>
+                                        <label><?php echo e(__('First Name')); ?></label>
                                         <input type="text" name="fname" class="form-control"
-                                            value="{{ $user->fname }}">
+                                            value="<?php echo e($user->fname); ?>">
                                     </div>
                                     <div class="col-md-6 mb-3">
 
-                                        <label>{{ __('Last Name') }}</label>
+                                        <label><?php echo e(__('Last Name')); ?></label>
                                         <input type="text" name="lname" class="form-control"
-                                            value="{{ $user->lname }}">
+                                            value="<?php echo e($user->lname); ?>">
                                     </div>
 
                                     <div class="form-group col-md-6 mb-3 ">
-                                        <label>{{ __('Phone') }}</label>
+                                        <label><?php echo e(__('Phone')); ?></label>
                                         <input type="text" name="phone" class="form-control"
-                                            value="{{ $user->phone }}">
+                                            value="<?php echo e($user->phone); ?>">
                                     </div>
                                     <div class="form-group col-md-6 mb-3 ">
-                                        <label>{{ __('Country') }}</label>
+                                        <label><?php echo e(__('Country')); ?></label>
                                         <input type="text" name="country" class="form-control"
-                                            value="{{ @$user->address->country }}">
+                                            value="<?php echo e(@$user->address->country); ?>">
                                     </div>
 
                                     <div class="col-md-4 mb-3">
 
-                                        <label>{{ __('city') }}</label>
+                                        <label><?php echo e(__('city')); ?></label>
                                         <input type="text" name="city" class="form-control form_control"
-                                            value="{{ @$user->address->city }}">
+                                            value="<?php echo e(@$user->address->city); ?>">
                                     </div>
 
                                     <div class="col-md-4 mb-3">
 
-                                        <label>{{ __('zip') }}</label>
+                                        <label><?php echo e(__('zip')); ?></label>
                                         <input type="text" name="zip" class="form-control form_control"
-                                            value="{{ @$user->address->zip }}">
+                                            value="<?php echo e(@$user->address->zip); ?>">
                                     </div>
 
                                     <div class="col-md-4 mb-3">
-                                        <label>{{ __('state') }}</label>
+                                        <label><?php echo e(__('state')); ?></label>
                                         <input type="text" name="state" class="form-control form_control"
-                                            value="{{ @$user->address->state }}">
+                                            value="<?php echo e(@$user->address->state); ?>">
                                     </div>
 
                                     <div class="col-md-12 mb-4">
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <p for="">{{ __('Email Verified') }}</p>
+                                                <p for=""><?php echo e(__('Email Verified')); ?></p>
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" name="email_status"
-                                                        {{ $user->ev ? 'checked' : '' }} class="custom-control-input"
+                                                        <?php echo e($user->ev ? 'checked' : ''); ?> class="custom-control-input"
                                                         id="customSwitch1">
                                                     <label class="custom-control-label"
                                                         for="customSwitch1">Active/Deactive</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <p for="">{{ __('SMS Verified') }}</p>
+                                                <p for=""><?php echo e(__('SMS Verified')); ?></p>
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" name="sms_status"
-                                                        {{ $user->sv ? 'checked' : '' }} class="custom-control-input"
+                                                        <?php echo e($user->sv ? 'checked' : ''); ?> class="custom-control-input"
                                                         id="customSwitch2">
                                                     <label class="custom-control-label"
                                                         for="customSwitch2">Active/Deactive</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <p for="">{{ __('KYC Verified') }}</p>
+                                                <p for=""><?php echo e(__('KYC Verified')); ?></p>
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" name="kyc_status"
-                                                        {{ $user->kyc ? 'checked' : '' }} name="email_status"
+                                                        <?php echo e($user->kyc ? 'checked' : ''); ?> name="email_status"
                                                         class="custom-control-input" id="customSwitch3">
                                                     <label class="custom-control-label"
                                                         for="customSwitch3">Active/Deactive</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <p for="">{{ __('Status') }}</p>
+                                                <p for=""><?php echo e(__('Status')); ?></p>
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" name="status"
-                                                        {{ $user->status ? 'checked' : '' }} name="email_status"
+                                                        <?php echo e($user->status ? 'checked' : ''); ?> name="email_status"
                                                         class="custom-control-input" id="customSwitch4">
                                                     <label class="custom-control-label"
                                                         for="customSwitch4">Active/Deactive</label>
@@ -329,97 +335,98 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary w-100">{{ 'Update User' }}</button>
+                                        <button type="submit" class="btn btn-primary w-100"><?php echo e('Update User'); ?></button>
                                     </div>
                                 </div>
                             </form>
                         </div>
 
                         <div class="tab-pane fade pt-4" id="balance" role="tabpanel" aria-labelledby="balance-tab">
-                            <form action="{{ route('admin.user.balance.update', $user->id) }}" method="post">
-                                @csrf
+                            <form action="<?php echo e(route('admin.user.balance.update', $user->id)); ?>" method="post">
+                                <?php echo csrf_field(); ?>
                                 <div class="input-group mb-3">
                                     <input type="hidden" class="form-control" name="user_id"
-                                        value="{{ $user->id }}">
+                                        value="<?php echo e($user->id); ?>">
                                     <input type="hidden" class="form-control" name="type" value="add">
                                      <input type="number" class="form-control" name="balance" min="0" step="any"
                                         placeholder="add Balance">
                                     <button class="btn btn-outline-success px-4" type="submit" id="button-addon2"> <i
-                                            class="fa fa-plus"></i> {{ __('Add Balance') }}</button>
+                                            class="fa fa-plus"></i> <?php echo e(__('Add Balance')); ?></button>
                                 </div>
                             </form>
-                            <form action="{{ route('admin.user.balance.update', $user->id) }}" method="post">
-                                @csrf
+                            <form action="<?php echo e(route('admin.user.balance.update', $user->id)); ?>" method="post">
+                                <?php echo csrf_field(); ?>
                                 <div class="input-group mb-3">
                                     <input type="hidden" class="form-control" name="user_id"
-                                        value="{{ $user->id }}">
+                                        value="<?php echo e($user->id); ?>">
                                     <input type="hidden" class="form-control" name="type" value="minus">
                                     <input type="number" class="form-control" name="balance"min="0" step="any"
                                         placeholder="Subtract Balance">
                                     <button class="btn btn-outline-danger px-2" type="submit" id="button-addon2"> <i
-                                            class="fa fa-minus mr-1"></i> {{ __('Subtruct Balance') }}</button>
+                                            class="fa fa-minus mr-1"></i> <?php echo e(__('Subtruct Balance')); ?></button>
                                 </div>
                             </form>
                         </div>
                         <div class="tab-pane fade pt-3" id="referral" role="tabpanel" aria-labelledby="referral-tab">
-                            @php
+                            <?php
                                 $reference = $user->refferals;
-                            @endphp
+                            ?>
 
-                            @if ($reference->count() > 0)
+                            <?php if($reference->count() > 0): ?>
                                 <ul class="sp-referral">
                                     <li class="single-child root-child">
                                         <p>
-                                            <img src="{{ getFile('user', $user->image) }}">
-                                            <span class="mb-0">{{ $user->full_name }}</span>
+                                            <img src="<?php echo e(getFile('user', $user->image)); ?>">
+                                            <span class="mb-0"><?php echo e($user->full_name); ?></span>
                                         </p>
                                         <ul class="sub-child-list step-2">
-                                            @foreach ($reference as $user)
+                                            <?php $__currentLoopData = $reference; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <li class="single-child">
                                                     <p>
-                                                        <img src="{{ getFile('user', $user->image) }}">
-                                                        <span class="mb-0">{{ $user->full_name }}</span>
+                                                        <img src="<?php echo e(getFile('user', $user->image)); ?>">
+                                                        <span class="mb-0"><?php echo e($user->full_name); ?></span>
                                                     </p>
 
                                                     <ul class="sub-child-list step-3">
-                                                        @foreach ($user->refferals as $ref)
+                                                        <?php $__currentLoopData = $user->refferals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ref): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <li class="single-child">
                                                                 <p>
-                                                                    <img src="{{ getFile('user', $ref->image) }}">
-                                                                    <span class="mb-0">{{ $ref->full_name }}</span>
+                                                                    <img src="<?php echo e(getFile('user', $ref->image)); ?>">
+                                                                    <span class="mb-0"><?php echo e($ref->full_name); ?></span>
                                                                 </p>
 
                                                                 <ul class="sub-child-list step-4">
-                                                                    @foreach ($ref->refferals as $ref2)
+                                                                    <?php $__currentLoopData = $ref->refferals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ref2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                         <li class="single-child">
                                                                             <p>
                                                                                 <img
-                                                                                    src="{{ getFile('user', $ref2->image) }}">
+                                                                                    src="<?php echo e(getFile('user', $ref2->image)); ?>">
                                                                                 <span
-                                                                                    class="mb-0">{{ $ref2->full_name }}</span>
+                                                                                    class="mb-0"><?php echo e($ref2->full_name); ?></span>
                                                                             </p>
                                                                         </li>
-                                                                    @endforeach
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                 </ul>
 
                                                             </li>
-                                                        @endforeach
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </ul>
                                                 </li>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                         </ul>
                                     </li>
                                 </ul>
-                            @else
+                            <?php else: ?>
                                 <div class="col-md-12 text-center mt-5">
                                     <i class="far fa-sad-tear display-1"></i>
                                     <p class="mt-2">
-                                        {{ __('No Reference User Found') }}
+                                        <?php echo e(__('No Reference User Found')); ?>
+
                                     </p>
 
                                 </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                         <div class="tab-pane fade pt-3" id="perfomance" role="tabpanel" aria-labelledby="Perfomance-tab">
                             <div class="row mt-4">
@@ -429,10 +436,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Team Deposit') }}</h4>
+                                                <h4><?php echo e(__('Total Team Deposit')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ number_format($TotalTeamDeposit, 2) . ' ' . @$general->site_currency }}
+                                                <?php echo e(number_format($TotalTeamDeposit, 2) . ' ' . @$general->site_currency); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -444,10 +452,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Team Commission') }}</h4>
+                                                <h4><?php echo e(__('Total Team Commission')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ number_format($totalTeamCom, 2) . ' ' . @$general->site_currency }}
+                                                <?php echo e(number_format($totalTeamCom, 2) . ' ' . @$general->site_currency); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -459,10 +468,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Active Members') }}</h4>
+                                                <h4><?php echo e(__('Total Active Members')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ $TotalTeamMembers }}
+                                                <?php echo e($TotalTeamMembers); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -474,10 +484,11 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4>{{ __('Total Inactive Members') }}</h4>
+                                                <h4><?php echo e(__('Total Inactive Members')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                {{ $TotalTeamMembersInactive }}
+                                                <?php echo e($TotalTeamMembersInactive); ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -493,11 +504,11 @@
 
     <div class="modal fade" tabindex="-1" role="dialog" id="mail">
         <div class="modal-dialog modal-lg" role="document">
-            <form action="{{ route('admin.user.mail', $user->id) }}" method="post">
-                @csrf
+            <form action="<?php echo e(route('admin.user.mail', $user->id)); ?>" method="post">
+                <?php echo csrf_field(); ?>
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">{{ __('Send Mail to user') }}</h5>
+                        <h5 class="modal-title"><?php echo e(__('Send Mail to user')); ?></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -505,7 +516,7 @@
                     <div class="modal-body">
                         <div class="form-group">
 
-                            <label for="">{{ __('Subject') }}</label>
+                            <label for=""><?php echo e(__('Subject')); ?></label>
 
                             <input type="text" name="subject" class="form-control">
 
@@ -513,32 +524,32 @@
 
                         <div class="form-group">
 
-                            <label for="">{{ __('Message') }}</label>
+                            <label for=""><?php echo e(__('Message')); ?></label>
 
                             <textarea name="message" id="" cols="30" rows="10" class="form-control summernote"></textarea>
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">{{ __('Send Mail') }}</button>
+                        <button type="submit" class="btn btn-primary"><?php echo e(__('Send Mail')); ?></button>
                         <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">{{ __('Close') }}</button>
+                            data-dismiss="modal"><?php echo e(__('Close')); ?></button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('style-plugin')
-    <link rel="stylesheet" href="{{ asset('asset/admin/css/toogle.min.css') }}">
-@endpush
+<?php $__env->startPush('style-plugin'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('asset/admin/css/toogle.min.css')); ?>">
+<?php $__env->stopPush(); ?>
 
-@push('script-plugin')
-    <script src="{{ asset('asset/admin/js/toogle.min.js') }}"></script>
-@endpush
+<?php $__env->startPush('script-plugin'); ?>
+    <script src="<?php echo e(asset('asset/admin/js/toogle.min.js')); ?>"></script>
+<?php $__env->stopPush(); ?>
 
-@push('style')
+<?php $__env->startPush('style'); ?>
     <style>
         .user-action-list {
             display: flex;
@@ -642,11 +653,11 @@
             border: 2px solid #a20a0a;
         }
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
 
-@push('script')
-    <script src="{{ asset('asset/admin/js/chart.min.js') }}"></script>
+<?php $__env->startPush('script'); ?>
+    <script src="<?php echo e(asset('asset/admin/js/chart.min.js')); ?>"></script>
 
     <script>
         'use strict'
@@ -657,7 +668,7 @@
                 modal.modal('show');
             })
             $('#country option').each(function(index) {
-                let country = "{{ @$user->address->country }}"
+                let country = "<?php echo e(@$user->address->country); ?>"
                 if ($(this).val() == country) {
                     $(this).attr('selected', 'selected')
                 }
@@ -669,10 +680,10 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: @json($months),
+                labels: <?php echo json_encode($months, 15, 512) ?>,
                 datasets: [{
                     label: 'Investment Chart',
-                    data: @json($totalAmount),
+                    data: <?php echo json_encode($totalAmount, 15, 512) ?>,
                     fill: false,
                     borderColor: '#2196f3',
                     backgroundColor: '#2196f3',
@@ -690,10 +701,10 @@
         var myChart2 = new Chart(ctx2, {
             type: 'bar',
             data: {
-                labels: @json($withdrawMonths),
+                labels: <?php echo json_encode($withdrawMonths, 15, 512) ?>,
                 datasets: [{
                     label: 'Withdraw Chart',
-                    data: @json($withdrawTotalAmount),
+                    data: <?php echo json_encode($withdrawTotalAmount, 15, 512) ?>,
                     fill: false,
                     borderColor: '#2196f3',
                     backgroundColor: '#2196f3',
@@ -706,4 +717,6 @@
             }
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('backend.layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\ncp\resources\views/backend/users/details.blade.php ENDPATH**/ ?>
