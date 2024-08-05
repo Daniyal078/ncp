@@ -183,6 +183,12 @@ class UserController extends Controller
             ->sum('withdraw_amount');
             $uplainer_id = DB::table('users')->where('id', auth()->id())->value('reffered_by');
             $uplainer_name = DB::table('users')->where('id', $uplainer_id)->first(['fname', 'lname']);
+
+
+            // deposit reward work
+            if($TotalTeamDeposit >= 100000){
+                // plus users balance reward amount 500
+            }
         return view($this->template . 'user.dashboard', compact('commison', 'pageTitle', 'interestLogs', 'totalInvest', 'currentInvest', 'currentPlan', 'allPlan', 'withdraw', 'pendingInvest', 'pendingWithdraw', 'totalDeposit', 'plans', 'LvlOneUsers', 'SumLvlOneDepositAmnt', 'LvlTwoUsers', 'SumLvlTwoDepositAmnt', 'LvlThreeUsers', 'SumLvlThreeDepositAmnt', 'TotalTeamDeposit', 'TotalTeamMembers', 'totalTeamCom', 'SumLvlThreeComAmnt', 'SumLvlTwoComAmnt', 'SumLvlOneComAmnt', 'currentDayCommision', 'today_deposit_amount', 'today_withdraw_amount', 'uplainer_name'));
     }
 

@@ -7,39 +7,47 @@
         </div>
     </div>
 
-<script>
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            document.getElementById("city").innerHTML = "Geolocation is not supported by this browser.";
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                document.getElementById("city").innerHTML = "Geolocation is not supported by this browser.";
+            }
         }
-    }
 
-    getLocation();
+        getLocation();
 
-    function showPosition(position) {
-        var lat = position.coords.latitude;
-        var lon = position.coords.longitude;
-        fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("citymy").value = `${data.countryCode} - ${data.principalSubdivision} - ${data.city} - ${data.locality}`;
-            })
-            .catch(error => {
-                document.getElementById("citymy").value = "Couldn't Find";
-            });
-    }
-</script>
+        function showPosition(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            fetch(
+                    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("citymy").value =
+                        `${data.countryCode} - ${data.principalSubdivision} - ${data.city} - ${data.locality}`;
+                })
+                .catch(error => {
+                    document.getElementById("citymy").value = "Couldn't Find";
+                });
+        }
+    </script>
 
+    <style>
+        .main.mainheight {
+            
+        }
+    </style>
     <!-- balance bar -->
     <div class="container text-center mb-3 py-3">
         @if ($uplainer_name)
-        <h5 class="text-start text-theme">Uplainer Name</h5>
-        <p class="text-start mb-3">{{ $uplainer_name->fname }} {{ $uplainer_name->lname }}</p>
+            <h5 class="text-start text-theme">Uplainer Name</h5>
+            <p class="text-start mb-3">{{ $uplainer_name->fname }} {{ $uplainer_name->lname }}</p>
         @endif
         <!-- Balance -->
-        <h2 class="fw-medium"> {{ number_format(auth()->user()->balance, 2) }} <small>{{ $general->site_currency }}</small></h2>
+        <h2 class="fw-medium"> {{ number_format(auth()->user()->balance, 2) }} <small>{{ $general->site_currency }}</small>
+        </h2>
         <p class="text-secondary mb-4">Current Balance</p>
 
         <a href="{{ url('/deposit') }}" class="btn btn-theme"><i class="bi bi-plus h4"></i> Add Money</a>
@@ -69,8 +77,9 @@
                                         </div>
                                         <div class="col">
                                             <p class="text-secondary small mb-1">Today Depost</p>
-                                            <h4 class="text-dark mb-0"><span class="increamentcount">{{$today_deposit_amount}}</span> <small
-                                                    class="h6">{{$general->site_currency}}</small></h4>
+                                            <h4 class="text-dark mb-0"><span
+                                                    class="increamentcount">{{ $today_deposit_amount }}</span> <small
+                                                    class="h6">{{ $general->site_currency }}</small></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -87,8 +96,9 @@
                                         </div>
                                         <div class="col">
                                             <p class="text-secondary small mb-1">Today Withdraw</p>
-                                            <h4 class="text-dark mb-0"><span class="increamentcount">{{$today_withdraw_amount}}</span> <small
-                                                    class="h6">{{$general->site_currency}}</small></h4>
+                                            <h4 class="text-dark mb-0"><span
+                                                    class="increamentcount">{{ $today_withdraw_amount }}</span> <small
+                                                    class="h6">{{ $general->site_currency }}</small></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -120,116 +130,115 @@
             </div>
         </div>
     </div>
-<div class="container">
-    <div class="row">
-        <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
-            <div class="card border-0 mb-4 theme-blue bg-radial-gradient text-white">
-                <div class="card-body bg-none">
-                    <div class="row gx-2 align-items-center">
-                        <div class="col-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
+                <div class="card border-0 mb-4 theme-blue bg-radial-gradient text-white">
+                    <div class="card-body bg-none">
+                        <div class="row gx-2 align-items-center">
+                            <div class="col-auto">
 
-                        </div>
-                        <div class="col">
-                            <p class="small mb-1">{{ __('Total Withdraw') }}</p>
-                            <h5>{{ number_format($withdraw, 2) }}</h5>
+                            </div>
+                            <div class="col">
+                                <p class="small mb-1">{{ __('Total Withdraw') }}</p>
+                                <h5>{{ number_format($withdraw, 2) }}</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
-            <div class="card border-0 mb-4 theme-green bg-radial-gradient text-white">
-                <div class="card-body bg-none">
-                    <div class="row gx-2 align-items-center">
-                        <div class="col-auto">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
+                <div class="card border-0 mb-4 theme-green bg-radial-gradient text-white">
+                    <div class="card-body bg-none">
+                        <div class="row gx-2 align-items-center">
+                            <div class="col-auto">
 
-                        </div>
-                        <div class="col">
-                            <p class="small mb-1">{{ __('Total Deposit') }}</p>
-                            <h5>{{ number_format($totalDeposit, 2) }}</h5>
+                            </div>
+                            <div class="col">
+                                <p class="small mb-1">{{ __('Total Deposit') }}</p>
+                                <h5>{{ number_format($totalDeposit, 2) }}</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
             <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
                 <a href="{{ url('investmentplan') }}">
-                <div class="card border-0 mb-4 theme-red bg-radial-gradient text-white">
-                    <div class="card-body bg-none">
-                        <div class="row gx-2 align-items-center">
-                            <div class="col-auto">
+                    <div class="card border-0 mb-4 theme-red bg-radial-gradient text-white">
+                        <div class="card-body bg-none">
+                            <div class="row gx-2 align-items-center">
+                                <div class="col-auto">
 
-                            </div>
-                            <div class="col">
-                                <p class="small mb-1">{{ __('Investment Plans') }}</p>
+                                </div>
+                                <div class="col">
+                                    <p class="small mb-1">{{ __('Investment Plans') }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
                 <a href="{{ url('commision') }}">
-                <div class="card border-0 mb-4 theme-yellow bg-radial-gradient text-white">
-                    <div class="card-body bg-none">
-                        <div class="row gx-2 align-items-center">
-                            <div class="col-auto">
+                    <div class="card border-0 mb-4 theme-yellow bg-radial-gradient text-white">
+                        <div class="card-body bg-none">
+                            <div class="row gx-2 align-items-center">
+                                <div class="col-auto">
 
-                            </div>
-                            <div class="col">
-                                <p class="small mb-1">{{ __('Refferal Log') }}</p>
+                                </div>
+                                <div class="col">
+                                    <p class="small mb-1">{{ __('Refferal Log') }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
                 <a href="{{ url('team') }}">
-                <div class="card border-0 mb-4 theme-purple bg-radial-gradient text-white">
-                    <div class="card-body bg-none">
-                        <div class="row gx-2 align-items-center">
-                            <div class="col-auto">
+                    <div class="card border-0 mb-4 theme-purple bg-radial-gradient text-white">
+                        <div class="card-body bg-none">
+                            <div class="row gx-2 align-items-center">
+                                <div class="col-auto">
 
-                            </div>
-                            <div class="col">
-                                <p class="small mb-1">{{ __('My Team') }}</p>
+                                </div>
+                                <div class="col">
+                                    <p class="small mb-1">{{ __('My Team') }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xxl-3">
                 <a href="{{ url('interest/log') }}">
-                <div class="card border-0 mb-4 theme-orange bg-radial-gradient text-white">
-                    <div class="card-body bg-none">
-                        <div class="row gx-2 align-items-center">
-                            <div class="col-auto">
+                    <div class="card border-0 mb-4 theme-orange bg-radial-gradient text-white">
+                        <div class="card-body bg-none">
+                            <div class="row gx-2 align-items-center">
+                                <div class="col-auto">
 
-                            </div>
-                            <div class="col">
-                                <p class="small mb-1">{{ __('Interest Log') }}</p>
+                                </div>
+                                <div class="col">
+                                    <p class="small mb-1">{{ __('Interest Log') }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
             </div>
-        <div class="mt-4">
-            <label>{{ __('Your refferal link') }}</label>
-            <div class="input-group mb-3">
-                <input type="text" id="refer-link" class="form-control text-success copy-text"
-                    value="{{ route('user.register', @Auth::user()->username) }}"
-                    placeholder="referallink.com/refer" aria-label="Recipient's username"
-                    aria-describedby="basic-addon2" readonly>
-                <button type="button" class="input-group-text copy cmn-btn"
-                    id="basic-addon2">{{ __('Copy') }}</button>
+            <div class="mt-4">
+                <label>{{ __('Your refferal link') }}</label>
+                <div class="input-group mb-3">
+                    <input type="text" id="refer-link" class="form-control text-success copy-text"
+                        value="{{ route('user.register', @Auth::user()->username) }}" placeholder="referallink.com/refer"
+                        aria-label="Recipient's username" aria-describedby="basic-addon2" readonly>
+                    <button type="button" class="input-group-text copy cmn-btn"
+                        id="basic-addon2">{{ __('Copy') }}</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     @push('script')
         <script>

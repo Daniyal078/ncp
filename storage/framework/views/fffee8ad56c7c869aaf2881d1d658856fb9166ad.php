@@ -452,10 +452,10 @@
                                         </div>
                                         <div class="card-wrap">
                                             <div class="card-header px-0">
-                                                <h4><?php echo e(__('Total Team Commission')); ?></h4>
+                                                <h4><?php echo e(__('Total Team Withdraw')); ?></h4>
                                             </div>
                                             <div class="card-body">
-                                                <?php echo e(number_format($totalTeamCom, 2) . ' ' . @$general->site_currency); ?>
+                                                <?php echo e(number_format($totalTeamWithdraw, 2) . ' ' . @$general->site_currency); ?>
 
                                             </div>
                                         </div>

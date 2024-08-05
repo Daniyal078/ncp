@@ -115,6 +115,12 @@ class ManageUserController extends Controller
                 ->where('payment_status', 1)
                 ->first();
 
+            $SumLvlOneWithdrawAmnt = DB::table('withdraws')
+                ->selectRaw('SUM(withdraw_amount) AS total_amount')
+                ->whereIn('user_id', $LvlOneUsers)
+                ->where('status', 1)
+                ->first();
+
             $LvlTwoUsers = DB::table('users')
                 ->select('id')
                 ->whereIn('reffered_by', $LvlOneUsers)
@@ -133,6 +139,12 @@ class ManageUserController extends Controller
                 ->selectRaw('SUM(amount) AS total_amount')
                 ->whereIn('user_id', $LvlTwoUsers)
                 ->where('payment_status', 1)
+                ->first();
+
+            $SumLvlTwoWithdrawAmnt = DB::table('withdraws')
+                ->selectRaw('SUM(withdraw_amount) AS total_amount')
+                ->whereIn('user_id', $LvlTwoUsers)
+                ->where('status', 1)
                 ->first();
 
             $LvlThreeUsers = DB::table('users')
@@ -155,27 +167,33 @@ class ManageUserController extends Controller
                 ->where('payment_status', 1)
                 ->first();
 
+            $SumLvlThreeWithdrawAmnt = DB::table('withdraws')
+                ->selectRaw('SUM(withdraw_amount) AS total_amount')
+                ->whereIn('user_id', $LvlThreeUsers)
+                ->where('status', 1)
+                ->first();
 
-            $SumLvlOneComAmnt = DB::table('reffered_commissions')
-                ->selectRaw('SUM(amount) AS total_com')
-                ->whereIn('reffered_to', $LvlOneUsers)
-                ->first();
-            $SumLvlTwoComAmnt = DB::table('reffered_commissions')
-                ->selectRaw('SUM(amount) AS total_com')
-                ->whereIn('reffered_to', $LvlTwoUsers)
-                ->first();
-            $SumLvlThreeComAmnt = DB::table('reffered_commissions')
-                ->selectRaw('SUM(amount) AS total_com')
-                ->whereIn('reffered_to', $LvlThreeUsers)
-                ->first();
+
+            // $SumLvlOneComAmnt = DB::table('reffered_commissions')
+            //     ->selectRaw('SUM(amount) AS total_com')
+            //     ->whereIn('reffered_to', $LvlOneUsers)
+            //     ->first();
+            // $SumLvlTwoComAmnt = DB::table('reffered_commissions')
+            //     ->selectRaw('SUM(amount) AS total_com')
+            //     ->whereIn('reffered_to', $LvlTwoUsers)
+            //     ->first();
+            // $SumLvlThreeComAmnt = DB::table('reffered_commissions')
+            //     ->selectRaw('SUM(amount) AS total_com')
+            //     ->whereIn('reffered_to', $LvlThreeUsers)
+            //     ->first();
 
             $TotalTeamDeposit = $SumLvlOneDepositAmnt->total_amount + $SumLvlTwoDepositAmnt->total_amount + $SumLvlThreeDepositAmnt->total_amount;
             $TotalTeamMembers = count($LvlOneUsers) + count($LvlTwoUsers) + count($LvlThreeUsers);
             $TotalTeamMembersInactive = count($LvlOneUsersInactive) + count($LvlTwoUsersInactive) + count($LvlThreeUsersInactive);
-            $totalTeamCom = $SumLvlOneComAmnt->total_com + $SumLvlTwoComAmnt->total_com + $SumLvlThreeComAmnt->total_com;
+            $totalTeamWithdraw = $SumLvlOneWithdrawAmnt->total_amount + $SumLvlTwoWithdrawAmnt->total_amount + $SumLvlThreeWithdrawAmnt->total_amount;
             // perfomane chart work
 
-        return view('backend.users.details', compact('pageTitle', 'user', 'plan', 'totalRef', 'userInterest', 'userCommission', 'withdrawTotal', 'totalDeposit', 'totalInvest', 'totalTicket','months','totalAmount','withdrawMonths','withdrawTotalAmount','TotalTeamDeposit','TotalTeamMembers','TotalTeamMembersInactive','totalTeamCom'));
+        return view('backend.users.details', compact('pageTitle', 'user', 'plan', 'totalRef', 'userInterest', 'userCommission', 'withdrawTotal', 'totalDeposit', 'totalInvest', 'totalTicket','months','totalAmount','withdrawMonths','withdrawTotalAmount','TotalTeamDeposit','TotalTeamMembers','TotalTeamMembersInactive','totalTeamWithdraw'));
     }
 
     public function userUpdate(Request $request, User $user)
