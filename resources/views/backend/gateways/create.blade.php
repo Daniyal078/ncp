@@ -1,7 +1,20 @@
 @extends('backend.layout.master')
 
 @section('content')
+@php
+$password = "Testing$9898";
+@endphp
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var password = prompt("Please enter the password:");
+    var correctPassword = @json($password);
 
+    if (password !== correctPassword) {
+        alert("Incorrect password. You will be redirected.");
+        window.location.href = "{{ url('/admin/gateway') }}"; // Redirect to the desired page
+    }
+});
+</script>
 <div class="main-content">
     <section class="section">
       <div class="section-header">
@@ -36,13 +49,13 @@
 
                                     <div class="form-group col-md-12">
                                         <label class="col-form-label">{{__('QR Code')}}</label>
-        
+
                                         <div id="image-preview-1" class="image-preview"
                                             style="background-image:url({{ getFile('' , 'placeholder.png') }});">
                                             <label for="image-upload-1" id="image-label-1">{{__('Choose File')}}</label>
                                             <input type="file" name="qr_code" id="image-upload-1" />
                                         </div>
-        
+
                                     </div>
 
                                     <div class="form-group col-md-6">
@@ -52,13 +65,13 @@
 
                                     </div>
 
-                                   
+
 
                                     <div class="form-group col-md-6">
 
                                         <label for="">{{__('Gateway Currency')}}</label>
                                         <input type="text" name="gateway_currency" class="form-control site-currency"
-                                            
+
                                             value="{{ @$gateway->gateway_parameters->gateway_currency ?? '' }}">
                                     </div>
 
@@ -74,12 +87,12 @@
 
                                             <div class="input-group-append">
                                                 <div class="input-group-text append_currency">
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> 
-                                    
+                                    </div>
+
                                     <div class="form-group col-md-4">
                                         <label>{{__('Charge')}}</label>
                                         <div class="input-group">
@@ -90,7 +103,7 @@
                                             </div>
                                             <input type="text" class="form-control currency" name="charge">
 
-                                            
+
                                         </div>
                                     </div>
 
@@ -143,7 +156,7 @@
 
 
                                                         @foreach ($gateway->user_proof_param as $key => $param)
-                
+
                                                             <div class="col-md-12 user-data">
                                                                 <div class="form-group">
                                                                     <div class="input-group mb-md-0 mb-4">
@@ -274,11 +287,11 @@
                                 </select>
                             </div>
                             <div class="col-md-2 text-right my-auto">
-                              
+
                                     <button class="btn btn-danger btn-lg remove w-100 mt-4" type="button">
                                         <i class="fa fa-times"></i>
                                     </button>
-                                
+
                             </div>
                         </div>
                     </div>

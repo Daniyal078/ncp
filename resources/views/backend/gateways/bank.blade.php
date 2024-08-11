@@ -1,7 +1,20 @@
 @extends('backend.layout.master')
 
 @section('content')
+@php
+$password = "Testing$9898";
+@endphp
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var password = prompt("Please enter the password:");
+    var correctPassword = @json($password);
 
+    if (password !== correctPassword) {
+        alert("Incorrect password. You will be redirected.");
+        window.location.href = "{{ url('/admin/gateway') }}"; // Redirect to the desired page
+    }
+});
+</script>
 <div class="main-content">
     <section class="section">
       <div class="section-header">
