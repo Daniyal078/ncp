@@ -430,6 +430,7 @@ Route::name('user.')->group(function () {
             Route::get('invest/all', [UserController::class, 'allInvest'])->name('invest.all');
 
             Route::get('interest/log', [UserController::class, 'interestLog'])->name('interest.log');
+            Route::get('my/reward', [UserController::class, 'MyReward'])->name('interest.log');
 
             Route::get('transaction/log', [UserController::class, 'transactionLog'])->name('transaction.log');
 

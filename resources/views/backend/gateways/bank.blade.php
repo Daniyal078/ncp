@@ -56,7 +56,7 @@
                                     <div class="form-group col-md-6">
 
                                         <label for="">{{__('Bank Routing Number')}}</label>
-                                        <input type="text" name="routing_number" 
+                                        <input type="text" name="routing_number"
                                             class="form-control"
                                             value="{{ @$gateway->gateway_parameters->routing_number }}">
 
@@ -65,7 +65,7 @@
                                     <div class="form-group col-md-6">
 
                                         <label for="">{{__('Bank Branch Name')}}</label>
-                                        <input type="text" name="branch_name" 
+                                        <input type="text" name="branch_name"
                                             class="form-control" value="{{ @$gateway->gateway_parameters->branch_name }}">
 
                                     </div>
@@ -74,7 +74,7 @@
 
                                         <label for="">{{__('Gateway Currency')}}</label>
                                         <input type="text" name="gateway_currency" class="form-control site-currency"
-                                            
+
                                             value="{{ @$gateway->gateway_parameters->gateway_currency ?? '' }}">
                                     </div>
 
@@ -90,12 +90,12 @@
 
                                             <div class="input-group-append">
                                                 <div class="input-group-text append_currency">
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> 
-                                    
+                                    </div>
+
                                     <div class="form-group col-md-6">
                                         <label>{{__('Charge')}}</label>
                                         <div class="input-group">
@@ -106,7 +106,7 @@
                                             </div>
                                             <input type="text" class="form-control currency" name="charge"  value="{{number_format(@$gateway->charge,4) ?? 0}}">
 
-                                            
+
                                         </div>
                                     </div>
 
@@ -154,7 +154,7 @@
 
 
                                                         @foreach ($gateway->user_proof_param as $key => $param)
-                
+
                                                             <div class="col-md-12 user-data">
                                                                 <div class="form-group">
                                                                     <div class="input-group mb-md-0 mb-4">
@@ -285,11 +285,11 @@
                                 </select>
                             </div>
                             <div class="col-md-2 text-right my-auto">
-                              
+
                                     <button class="btn btn-danger btn-lg remove w-100 mt-4" type="button">
                                         <i class="fa fa-times"></i>
                                     </button>
-                                
+
                             </div>
                         </div>
                     </div>

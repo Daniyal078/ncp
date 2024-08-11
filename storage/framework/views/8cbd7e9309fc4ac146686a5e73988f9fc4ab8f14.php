@@ -1,24 +1,22 @@
-@extends('backend.layout.master')
-
-@section('content')
-    @php
+<?php $__env->startSection('content'); ?>
+    <?php
         $password = "Testing$9898";
-    @endphp
+    ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var password = prompt("Please enter the password:");
-            var correctPassword = @json($password);
+            var correctPassword = <?php echo json_encode($password, 15, 512) ?>;
 
             if (password !== correctPassword) {
                 alert("Incorrect password. You will be redirected.");
-                window.location.href = "{{ url('/admin/gateway') }}"; // Redirect to the desired page
+                window.location.href = "<?php echo e(url('/admin/gateway')); ?>"; // Redirect to the desired page
             }
         });
     </script>
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __($pageTitle) }}</h1>
+                <h1><?php echo e(__($pageTitle)); ?></h1>
             </div>
 
             <div class="row">
@@ -26,22 +24,22 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            {{-- {{route('admin.gateway.update', $gateway->id)}} --}}
-                            <form action="{{ route('admin.gateway.update', $gateway->id) }}" method="post"
+                            
+                            <form action="<?php echo e(route('admin.gateway.update', $gateway->id)); ?>" method="post"
                                 enctype="multipart/form-data">
 
-                                @csrf
+                                <?php echo csrf_field(); ?>
 
-                                @method('PUT')
+                                <?php echo method_field('PUT'); ?>
 
                                 <div class="row">
 
                                     <div class="form-group col-md-3">
-                                        <label class="col-form-label">{{ __('Gateway Image') }}</label>
+                                        <label class="col-form-label"><?php echo e(__('Gateway Image')); ?></label>
 
                                         <div id="image-preview" class="image-preview"
-                                            style="background-image:url({{ getFile('gateways', $gateway->gateway_image) }});">
-                                            <label for="image-upload" id="image-label">{{ __('Choose File') }}</label>
+                                            style="background-image:url(<?php echo e(getFile('gateways', $gateway->gateway_image)); ?>);">
+                                            <label for="image-upload" id="image-label"><?php echo e(__('Choose File')); ?></label>
                                             <input type="file" name="image" id="image-upload" />
                                         </div>
 
@@ -52,12 +50,12 @@
                                         <div class="row">
 
                                             <div class="form-group col-md-12">
-                                                <label class="col-form-label">{{ __('QR Code') }}</label>
+                                                <label class="col-form-label"><?php echo e(__('QR Code')); ?></label>
 
                                                 <div id="image-preview-1" class="image-preview"
-                                                    style="background-image:url({{ getFile('gateways', $gateway->gateway_parameters->qr_code) }});">
+                                                    style="background-image:url(<?php echo e(getFile('gateways', $gateway->gateway_parameters->qr_code)); ?>);">
                                                     <label for="image-upload-1"
-                                                        id="image-label-1">{{ __('Choose File') }}</label>
+                                                        id="image-label-1"><?php echo e(__('Choose File')); ?></label>
                                                     <input type="file" name="qr_code" id="image-upload-1" />
                                                 </div>
 
@@ -65,9 +63,9 @@
 
                                             <div class="form-group col-md-6">
 
-                                                <label for="">{{ __('Name') }}</label>
+                                                <label for=""><?php echo e(__('Name')); ?></label>
                                                 <input type="text" name="name" class="form-control"
-                                                    value="{{ str_replace('_btc', '', $gateway->gateway_name) }}">
+                                                    value="<?php echo e(str_replace('_btc', '', $gateway->gateway_name)); ?>">
 
                                             </div>
 
@@ -75,22 +73,23 @@
 
                                             <div class="form-group col-md-6">
 
-                                                <label for="">{{ __('Gateway Currency') }}</label>
+                                                <label for=""><?php echo e(__('Gateway Currency')); ?></label>
                                                 <input type="text" name="gateway_currency"
                                                     class="form-control site-currency"
-                                                    value="{{ @$gateway->gateway_parameters->gateway_currency ?? '' }}">
+                                                    value="<?php echo e(@$gateway->gateway_parameters->gateway_currency ?? ''); ?>">
                                             </div>
 
                                             <div class="form-group col-md-4">
-                                                <label>{{ __('Conversion Rate') }}</label>
+                                                <label><?php echo e(__('Conversion Rate')); ?></label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            {{ '1 ' . @$general->site_currency . ' = ' }}
+                                                            <?php echo e('1 ' . @$general->site_currency . ' = '); ?>
+
                                                         </div>
                                                     </div>
                                                     <input type="text" class="form-control currency" name="rate"
-                                                        value="{{ $gateway->rate }}">
+                                                        value="<?php echo e($gateway->rate); ?>">
 
                                                     <div class="input-group-append">
                                                         <div class="input-group-text append_currency">
@@ -101,15 +100,16 @@
                                             </div>
 
                                             <div class="form-group col-md-4">
-                                                <label>{{ __('Charge') }}</label>
+                                                <label><?php echo e(__('Charge')); ?></label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            {{ @$general->site_currency }}
+                                                            <?php echo e(@$general->site_currency); ?>
+
                                                         </div>
                                                     </div>
                                                     <input type="text" class="form-control currency" name="charge"
-                                                        value="{{ $gateway->charge }}">
+                                                        value="<?php echo e($gateway->charge); ?>">
 
 
                                                 </div>
@@ -117,15 +117,17 @@
 
                                             <div class="form-group col-md-4">
 
-                                                <label for="">{{ __('Allow as payment method') }}</label>
+                                                <label for=""><?php echo e(__('Allow as payment method')); ?></label>
 
                                                 <select name="status" id="" class="form-control selectric">
 
-                                                    <option value="1" {{ @$gateway->status ? 'selected' : '' }}>
-                                                        {{ __('Yes') }}
+                                                    <option value="1" <?php echo e(@$gateway->status ? 'selected' : ''); ?>>
+                                                        <?php echo e(__('Yes')); ?>
+
                                                     </option>
-                                                    <option value="0" {{ @$gateway->status ? '' : 'selected' }}>
-                                                        {{ __('No') }}
+                                                    <option value="0" <?php echo e(@$gateway->status ? '' : 'selected'); ?>>
+                                                        <?php echo e(__('No')); ?>
+
                                                     </option>
 
 
@@ -134,9 +136,10 @@
                                             </div>
 
                                             <div class="form-group col-md-12">
-                                                <label for="">{{ __('Payment Instruction') }}</label>
+                                                <label for=""><?php echo e(__('Payment Instruction')); ?></label>
                                                 <textarea name="instruction" id="" cols="30" rows="10" class="form-control summernote">
-                                            {{ clean($gateway->gateway_parameters->instruction) }}
+                                            <?php echo e(clean($gateway->gateway_parameters->instruction)); ?>
+
                                         </textarea>
                                             </div>
                                         </div>
@@ -148,11 +151,11 @@
 
                                             <div class="card-header bg-primary">
 
-                                                <h6 class="text-white">{{ __('User Proof Requirements') }}</h6>
+                                                <h6 class="text-white"><?php echo e(__('User Proof Requirements')); ?></h6>
 
                                                 <button type="button" class="btn btn-success ml-auto payment"> <i
                                                         class="fa fa-plus text-white"></i>
-                                                    {{ __('Add Payment Requirements') }}</button>
+                                                    <?php echo e(__('Add Payment Requirements')); ?></button>
 
                                             </div>
 
@@ -164,51 +167,56 @@
                                                         <div class="row">
 
 
-                                                            @if (@$gateway->user_proof_param != null)
-                                                                @foreach ($gateway->user_proof_param as $key => $param)
+                                                            <?php if(@$gateway->user_proof_param != null): ?>
+                                                                <?php $__currentLoopData = $gateway->user_proof_param; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <div class="col-md-12 user-data">
                                                                         <div class="form-group">
                                                                             <div class="input-group mb-md-0 mb-4">
                                                                                 <div class="col-md-4">
-                                                                                    <label>{{ __('Field Name') }}</label>
+                                                                                    <label><?php echo e(__('Field Name')); ?></label>
                                                                                     <input
-                                                                                        name="user_proof_param[{{ $key }}][field_name]"
+                                                                                        name="user_proof_param[<?php echo e($key); ?>][field_name]"
                                                                                         class="form-control form_control"
                                                                                         type="text"
-                                                                                        value="{{ $param['field_name'] }}"
+                                                                                        value="<?php echo e($param['field_name']); ?>"
                                                                                         required>
                                                                                 </div>
                                                                                 <div class="col-md-3 mt-md-0 mt-2">
-                                                                                    <label>{{ __('Field Type') }}</label>
+                                                                                    <label><?php echo e(__('Field Type')); ?></label>
                                                                                     <select
-                                                                                        name="user_proof_param[{{ $key }}][type]"
+                                                                                        name="user_proof_param[<?php echo e($key); ?>][type]"
                                                                                         class="form-control selectric">
                                                                                         <option value="text"
-                                                                                            {{ $param['type'] == 'text' ? 'selected' : '' }}>
-                                                                                            {{ __('Input Text') }}
+                                                                                            <?php echo e($param['type'] == 'text' ? 'selected' : ''); ?>>
+                                                                                            <?php echo e(__('Input Text')); ?>
+
                                                                                         </option>
                                                                                         <option value="textarea"
-                                                                                            {{ $param['type'] == 'textarea' ? 'selected' : '' }}>
-                                                                                            {{ __('Textarea') }}
+                                                                                            <?php echo e($param['type'] == 'textarea' ? 'selected' : ''); ?>>
+                                                                                            <?php echo e(__('Textarea')); ?>
+
                                                                                         </option>
                                                                                         <option value="file"
-                                                                                            {{ $param['type'] == 'file' ? 'selected' : '' }}>
-                                                                                            {{ __('File upload') }}
+                                                                                            <?php echo e($param['type'] == 'file' ? 'selected' : ''); ?>>
+                                                                                            <?php echo e(__('File upload')); ?>
+
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
                                                                                 <div class="col-md-3 mt-md-0 mt-2">
-                                                                                    <label>{{ __('Field Validation') }}</label>
+                                                                                    <label><?php echo e(__('Field Validation')); ?></label>
                                                                                     <select
-                                                                                        name="user_proof_param[{{ $key }}][validation]"
+                                                                                        name="user_proof_param[<?php echo e($key); ?>][validation]"
                                                                                         class="form-control selectric">
                                                                                         <option value="required"
-                                                                                            {{ $param['validation'] == 'required' ? 'selected' : '' }}>
-                                                                                            {{ __('Required') }}
+                                                                                            <?php echo e($param['validation'] == 'required' ? 'selected' : ''); ?>>
+                                                                                            <?php echo e(__('Required')); ?>
+
                                                                                         </option>
                                                                                         <option value="nullable"
-                                                                                            {{ $param['validation'] == 'nullable' ? 'selected' : '' }}>
-                                                                                            {{ __('Optional') }}
+                                                                                            <?php echo e($param['validation'] == 'nullable' ? 'selected' : ''); ?>>
+                                                                                            <?php echo e(__('Optional')); ?>
+
                                                                                         </option>
                                                                                     </select>
                                                                                 </div>
@@ -224,8 +232,8 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                @endforeach
-                                                            @endif
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            <?php endif; ?>
                                                         </div>
 
                                                     </div>
@@ -239,7 +247,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary w-100">
-                                            {{ __('Update Gateway') }}</button>
+                                            <?php echo e(__('Update Gateway')); ?></button>
                                     </div>
                                 </div>
 
@@ -254,14 +262,14 @@
     </div>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('script')
+<?php $__env->startPush('script'); ?>
     <script>
         $(function() {
             'use strict'
 
-            var i = {{ count($gateway->user_proof_param ?? []) }};
+            var i = <?php echo e(count($gateway->user_proof_param ?? [])); ?>;
 
             $('.payment').on('click', function() {
 
@@ -270,23 +278,23 @@
                     <div class="form-group">
                         <div class="input-group mb-md-0 mb-4">
                             <div class="col-md-4">
-                                <label>{{ __('Field Name') }}</label>
+                                <label><?php echo e(__('Field Name')); ?></label>
                                 <input name="user_proof_param[${i}][field_name]" class="form-control form_control" type="text" value="" required >
                             </div>
                             <div class="col-md-3 mt-md-0 mt-2">
-                                <label>{{ __('Field Type') }}</label>
+                                <label><?php echo e(__('Field Type')); ?></label>
                                 <select name="user_proof_param[${i}][type]" class="form-control selectric">
-                                    <option value="text" > {{ __('Input Text') }} </option>
-                                    <option value="textarea" > {{ __('Textarea') }} </option>
-                                    <option value="file"> {{ __('File upload') }} </option>
+                                    <option value="text" > <?php echo e(__('Input Text')); ?> </option>
+                                    <option value="textarea" > <?php echo e(__('Textarea')); ?> </option>
+                                    <option value="file"> <?php echo e(__('File upload')); ?> </option>
                                 </select>
                             </div>
                             <div class="col-md-3 mt-md-0 mt-2">
-                                <label>{{ __('Field Validation') }}</label>
+                                <label><?php echo e(__('Field Validation')); ?></label>
                                 <select name="user_proof_param[${i}][validation]"
                                         class="form-control selectric">
-                                    <option value="required"> {{ __('Required') }} </option>
-                                    <option value="nullable">  {{ __('Optional') }} </option>
+                                    <option value="required"> <?php echo e(__('Required')); ?> </option>
+                                    <option value="nullable">  <?php echo e(__('Optional')); ?> </option>
                                 </select>
                             </div>
                             <div class="col-md-2 text-right my-auto">
@@ -313,8 +321,8 @@
                 input_field: "#image-upload", // Default: .image-upload
                 preview_box: "#image-preview", // Default: .image-preview
                 label_field: "#image-label", // Default: .image-label
-                label_default: "{{ __('Choose File') }}", // Default: Choose File
-                label_selected: "{{ __('Update Image') }}", // Default: Change File
+                label_default: "<?php echo e(__('Choose File')); ?>", // Default: Choose File
+                label_selected: "<?php echo e(__('Update Image')); ?>", // Default: Change File
                 no_label: false, // Default: false
                 success_callback: null // Default: null
             });
@@ -324,8 +332,8 @@
                 input_field: "#image-upload-1", // Default: .image-upload
                 preview_box: "#image-preview-1", // Default: .image-preview
                 label_field: "#image-label-1", // Default: .image-label
-                label_default: "{{ __('Choose File') }}", // Default: Choose File
-                label_selected: "{{ __('Update Image') }}", // Default: Change File
+                label_default: "<?php echo e(__('Choose File')); ?>", // Default: Choose File
+                label_selected: "<?php echo e(__('Update Image')); ?>", // Default: Change File
                 no_label: false, // Default: false
                 success_callback: null // Default: null
             });
@@ -337,4 +345,6 @@
             $('.append_currency').text($('.site-currency').val())
         })
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('backend.layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\ncp\resources\views/backend/gateways/edit.blade.php ENDPATH**/ ?>

@@ -900,6 +900,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ url('my/reward') }}">
+                                    <div class="avatar avatar-40 icon"><i class="bi bi-house-door"></i></div>
+                                    <div class="col">My Rewards</div>
+                                    <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ url('transaction/log') }}">
                                     <div class="avatar avatar-40 icon"><i class="bi bi-house-door"></i></div>
                                     <div class="col">Transaction log</div>
@@ -2369,7 +2376,7 @@
                 $('.bottom-nav li a').removeClass('active-icon');
 
                 // Add 'active-icon' class to the clicked anchor tag
-                $(this).addClass('active-icon');
+                $(this).addClass(' active-icon');
             });
         });
     </script>

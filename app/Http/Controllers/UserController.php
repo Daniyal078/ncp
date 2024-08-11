@@ -207,7 +207,7 @@ if (is_numeric($SumLvlOneDepositAmnt) && is_numeric($lastCheckedDeposit)) {
             'amount' => $increments * 3000, // The reward amount
             'currency' => @$general->site_currency,
             'charge' => 0,
-            'details' => 'Deposit Commission From Level 1',
+            'details' => 'Level One 1 lack Achieve Reward',
             'type' => '+',
             'gateway_transaction' => '',
             'payment_status' => 1,
@@ -972,6 +972,10 @@ if (is_numeric($SumLvlOneDepositAmnt) && is_numeric($lastCheckedDeposit)) {
         return view($this->template . 'user.pending_invest')->with($data);
     }
 
+    public function MyReward(){
+        $transactions = Transaction::where('user_id', auth()->id())->where('details', 'Level One 1 lack Achieve Reward')->latest()->paginate();;
+        return view($this->template . 'user.my_reward',compact('transactions'));
+    }
     public function interestLog(Request $request)
     {
 

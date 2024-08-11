@@ -24,20 +24,20 @@
                                         <th>{{__('status')}}</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
 
                                     @forelse ($gateways as $gateway)
                                         <tr>
                                             <td>{{$gateway->gateway_name}}</td>
-                                            <td>{{$gateway->gateway_parameters->gateway_currency}}</td>
+                                            <td>{{$gateway ?->gateway_parameters ?->gateway_currency}}</td>
                                             <td>{{$gateway->rate}}</td>
                                             <td>
                                                 <a href="{{route('admin.gateway.edit', $gateway)}}" class="btn btn-primary btn-sm">{{__('Edit')}}</a>
                                             </td>
                                         </tr>
                                     @empty
-                                        
+
                                     <tr>
                                         <td colspan="100%" class="text-center">{{__('No Gateways Found')}}</td>
                                     </tr>
