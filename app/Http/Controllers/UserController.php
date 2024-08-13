@@ -976,6 +976,10 @@ if (is_numeric($SumLvlOneDepositAmnt) && is_numeric($lastCheckedDeposit)) {
         $transactions = Transaction::where('user_id', auth()->id())->where('details', 'Level One 1 lack Achieve Reward')->latest()->paginate();;
         return view($this->template . 'user.my_reward',compact('transactions'));
     }
+    public function PlayStorePage(){
+        return view($this->template . 'user.play-store-page');
+
+    }
     public function interestLog(Request $request)
     {
 

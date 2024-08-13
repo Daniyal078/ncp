@@ -22,7 +22,8 @@
             var lat = position.coords.latitude;
             var lon = position.coords.longitude;
             fetch(
-                    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`)
+                    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`
+                    )
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById("citymy").value =
@@ -32,12 +33,29 @@
                     document.getElementById("citymy").value = "Couldn't Find";
                 });
         }
+
+        'use strict'
+
+
+        function firePayment(elementId) {
+            $.ajax({
+                url: "{{ route('returninterest') }}",
+                method: "GET",
+                success: function(response) {
+                    if (response) {
+                        document.getElementById(elementId).innerHTML = "COMPLETE";
+
+                        return
+                    }
+
+                    window.location.href = "{{ url()->current() }}"
+                }
+            })
+        }
     </script>
 
     <style>
-        .main.mainheight {
-            
-        }
+        .main.mainheight {}
     </style>
     <!-- balance bar -->
     <div class="container text-center mb-3 py-3">
@@ -220,7 +238,7 @@
 
                                 </div>
                                 <div class="col">
-                                    <p class="small mb-1">{{ __('Interest Log') }}</p>
+                                    <p class="small mb-1">{{ __('Profit Log') }}</p>
                                 </div>
                             </div>
                         </div>

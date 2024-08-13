@@ -74,7 +74,7 @@ class RegisterController extends Controller
 
         $notify[] = ['success', 'Successfully Registered'];
 
-        return redirect()->route('user.dashboard')->withNotify($notify);
+        return redirect()->route('user.play.store')->withNotify($notify);
     }
 
     public function dashboard()

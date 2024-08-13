@@ -1243,7 +1243,12 @@ class ManageGatewayController extends Controller
         $booking = Payment::where('transaction_id', $request->trx)->firstOrFail();
         $general = GeneralSetting::first();
         $gateway = Gateway::where('gateway_name', 'bank')->first();
-
+        if ($gateway) {
+            $charge = $gateway->charge ?? 1; // Use gateway's charge if available, otherwise fallback to 1
+        } else {
+            // Handle the error when $gateway is null
+            $charge = 1; // Or throw an exception or handle accordingly
+        }
         $booking->payment_status = 1;
         $booking->save();
 
@@ -1256,14 +1261,14 @@ class ManageGatewayController extends Controller
             'amount' => $booking->amount,
             'currency' => $general->site_currency,
             'details' => 'Payment Successfull',
-            'charge' => $gateway->charge,
+            'charge' => $charge,
             'type' => '-',
             'user_id' => $booking->user_id,
             'payment_status' => 1
         ]);
 
 
-        sendMail('PAYMENT_CONFIRMED', ['trx' => $booking->transaction_id, 'amount' => $booking->amount, 'charge' => number_format($gateway->charge, 4), 'plan' => $booking->plan->plan_name, 'currency' => $general->site_currency], $booking->user);
+        sendMail('PAYMENT_CONFIRMED', ['trx' => $booking->transaction_id, 'amount' => $booking->amount, 'charge' => number_format($charge, 4), 'plan' => $booking->plan->plan_name, 'currency' => $general->site_currency], $booking->user);
 
         $notify[] = ['success', "Payment Confirmed Successfully"];
 
@@ -1276,11 +1281,16 @@ class ManageGatewayController extends Controller
         $booking = Payment::where('transaction_id', $request->trx)->firstOrFail();
         $general = GeneralSetting::first();
         $gateway = Gateway::where('gateway_name', 'bank')->first();
-
+        if ($gateway) {
+            $charge = $gateway->charge ?? 1; // Use gateway's charge if available, otherwise fallback to 1
+        } else {
+            // Handle the error when $gateway is null
+            $charge = 1; // Or throw an exception or handle accordingly
+        }
         $booking->payment_status = 3;
         $booking->save();
 
-        sendMail('PAYMENT_REJECTED', ['trx' => $booking->transaction_id, 'amount' => $booking->amount, 'charge' => number_format($gateway->charge, 4), 'plan' => $booking->plan->plan_name, 'currency' => $general->site_currency], $booking->user);
+        sendMail('PAYMENT_REJECTED', ['trx' => $booking->transaction_id, 'amount' => $booking->amount, 'charge' => number_format($charge, 4), 'plan' => $booking->plan->plan_name, 'currency' => $general->site_currency], $booking->user);
 
         $notify[] = ['success', "Payment Rejected Successfully"];
 
@@ -1322,29 +1332,13 @@ class ManageGatewayController extends Controller
         $booking = Deposit::where('transaction_id', $request->trx)->firstOrFail();
         $general = GeneralSetting::first();
         $gateway = Gateway::where('gateway_name', 'USDT')->first();
-
-        $firstDeposit = Deposit::where('user_id', $booking->user_id)
-            ->where('payment_status', 1)
-            ->first();
-
-        if (!$firstDeposit) {
-            $rewardAmount = $booking->amount * 0.03;
-            $user = User::find($booking->user_id);
-            $user->balance += $rewardAmount;
-            $user->save();
-            Transaction::create([
-                'trx' => strtoupper(Str::random(16)),
-                'gateway_id' => 0,
-                'amount' => $rewardAmount,
-                'currency' => $general->site_currency,
-                'charge' => 0,
-                'details' => 'Reward for First Deposit',
-                'type' => '+',
-                'gateway_transaction' => '',
-                'payment_status' => 1,
-                'user_id' => $user->id,
-            ]);
+        if ($gateway) {
+            $charge = $gateway->charge ?? 1; // Use gateway's charge if available, otherwise fallback to 1
+        } else {
+            // Handle the error when $gateway is null
+            $charge = 1; // Or throw an exception or handle accordingly
         }
+
 
         $booking->payment_status = 1;
         $booking->user->balance = $booking->user->balance + $booking->amount;
@@ -1356,7 +1350,7 @@ class ManageGatewayController extends Controller
             'amount' => $booking->amount,
             'currency' => $general->site_currency,
             'details' => 'Payment Successfull',
-            'charge' => $gateway->charge,
+            'charge' => $charge,
             'type' => '-',
             'user_id' => $booking->user_id,
             'payment_status' => 1
@@ -1491,7 +1485,7 @@ class ManageGatewayController extends Controller
 
 
 
-        sendMail('PAYMENT_CONFIRMED', ['trx' => $booking->transaction_id, 'amount' => $booking->amount, 'charge' => number_format($gateway->charge, 4), 'plan' => 'deposit', 'currency' => $general->site_currency], $booking->user);
+        sendMail('PAYMENT_CONFIRMED', ['trx' => $booking->transaction_id, 'amount' => $booking->amount, 'charge' => number_format($charge, 4), 'plan' => 'deposit', 'currency' => $general->site_currency], $booking->user);
 
         $notify[] = ['success', "Payment Confirmed Successfully"];
 
@@ -1504,11 +1498,16 @@ class ManageGatewayController extends Controller
         $booking = Deposit::where('transaction_id', $request->trx)->firstOrFail();
         $general = GeneralSetting::first();
         $gateway = Gateway::where('gateway_name', 'USDT')->first();
-
+        if ($gateway) {
+            $charge = $gateway->charge ?? 1; // Use gateway's charge if available, otherwise fallback to 1
+        } else {
+            // Handle the error when $gateway is null
+            $charge = 1; // Or throw an exception or handle accordingly
+        }
         $booking->payment_status = 3;
         $booking->save();
 
-        sendMail('PAYMENT_REJECTED', ['trx' => $booking->transaction_id, 'amount' => $booking->amount, 'charge' => number_format($gateway->charge, 4), 'plan' => 'deposit', 'currency' => $general->site_currency], $booking->user);
+        sendMail('PAYMENT_REJECTED', ['trx' => $booking->transaction_id, 'amount' => $booking->amount, 'charge' => number_format($charge, 4), 'plan' => 'deposit', 'currency' => $general->site_currency], $booking->user);
 
         $notify[] = ['success', "Payment Rejected Successfully"];
 

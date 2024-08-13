@@ -41,7 +41,7 @@
 
     #invoice-POS p {
         font-size: 0.7em;
-        color: #000000;
+        color: #ffffff;
         line-height: 1.2em;
     }
 

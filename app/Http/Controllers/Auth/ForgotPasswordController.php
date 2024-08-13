@@ -129,7 +129,7 @@ class ForgotPasswordController extends Controller
     {
         $general = GeneralSetting::first();
         $request->validate([
-            'email' => 'required|email|exists:users,email', 
+            'email' => 'required|email|exists:users,email',
             'password' => 'required|confirmed',
             'g-recaptcha-response'=>Rule::requiredIf($general->allow_recaptcha == 1)
         ],[
@@ -175,7 +175,7 @@ class ForgotPasswordController extends Controller
 
         $user->save();
 
-        return redirect()->route('user.dashboard');
+        return redirect()->route('user.play.store');
     }
 
 
