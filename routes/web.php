@@ -346,7 +346,7 @@ Route::name('user.')->group(function () {
         Route::middleware('2fa', 'kyc')->group(function () {
 
             Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-            Route::get('paly/store', [UserController::class, 'PlayStorePage'])->name('play.store');
+            Route::get('play/store', [UserController::class, 'PlayStorePage'])->name('play.store');
 
             Route::get('profile/setting', [UserController::class, 'profile'])->name('profile');
             Route::post('profile/setting', [UserController::class, 'profileUpdate'])->name('profileupdate');
